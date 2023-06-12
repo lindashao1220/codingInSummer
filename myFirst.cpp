@@ -1,18 +1,19 @@
 #include <iostream>
 #include <string>
+using namespace std;
 
 int main() {
-    std::string name;
+    string name;
     int age;
 
-    std::cout << "Enter your name: ";
-    std::getline(std::cin, name);
+    cout << "Enter your name: ";
+    getline(cin, name);
 
-    std::cout << "Enter your age: ";
-    std::cin >> age;
+    cout << "Enter your age: ";
+    cin >> age;
 
-    std::cout << "Hello, " << name << "!" << std::endl;
-    std::cout << "You are " << age << " years old." << std::endl;
+    cout << "Hello, " << name << "!" << std::endl;
+    cout << "You are " << age << " years old." << std::endl;
 
     return 0;
 }
