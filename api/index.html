@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api</title>
+</head>
+<body>
+  <h1>where is the iss?</h1>
+  <p>latitude: <span id = "lat"></span><br/></p>
+  <p>longitude: <span id = "lon"></span><br/></p>
+
+
+    <script>
+        const api_url = "https://api.wheretheiss.at/v1/satellites/25544"
+        async function getISS(){
+            const response = await fetch(api_url)
+            const data = await response.json();
+            console.log(data.latitude)
+            let lat = data.latitude;
+            let lon = data.longitude;
+            document.getElementById('lat').textContent = lat;
+            document.getElementById('lon').textContent = lon;
+        }
+        getISS();
+    </script>
+</body>
+</html>
