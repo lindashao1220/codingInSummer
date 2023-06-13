@@ -10,8 +10,10 @@
 <body>
     <canvas id = "chart" width = "400" height= "400"></canvas>
     <script>
-        const xlables = [];
         
+        
+ const xlables = [];
+ const ytemps = [];
 
 chartIt();
 
@@ -19,21 +21,27 @@ async function chartIt(){
     await getData();
     let ctx = document.getElementById('chart').getContext('2d')
     let myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: xlables,
       datasets: [{
-        label: "global average tem",
-        data: [12, 19, 3, 5, 2, 3],
+        label: "Global Average Temperature",
+        data: ytemps,
+        fill: false,
         borderWidth: 1
       }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        scales: {
+            y: {
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, ticks) {
+                        return '$' + value;
+                    }
+                }
+            }
         }
-      }
     }
   });
 }
@@ -51,6 +59,7 @@ async function chartIt(){
             const year = row[0];
             xlables.push(year);
             const temp = row[1];
+            ytemps.push(parseFloat(temp)+1);
             console.log(year, temp);
         })
         console.log(rows)
