@@ -19,13 +19,13 @@
 
 <body>
   <h1>where is the iss?</h1>
-  <p>latitude: <span id = "lat"></span><br/></p>
+  <p>latitude: <span id = "lat"></span>,<br/></p>
   <p>longitude: <span id = "lon"></span><br/></p>
 
   <div id="issMap"></div>
 
     <script>
-        var map = L.map('issMap').setView([51.505, -0.09], 13);
+        var map = L.map('issMap').setView([0,0], 1);
         const marker = L.marker([0,0]).addTo(map);
 
 
@@ -37,6 +37,8 @@
 
 
         const api_url = "https://api.wheretheiss.at/v1/satellites/25544"
+
+        let firstTime = true;
         async function getISS(){
             const response = await fetch(api_url)
             const data = await response.json();
@@ -45,11 +47,18 @@
             let lon = data.longitude;
 
             marker.setLatLng([lat, lon])
+            if(firstTime){
+            map.setView([lat, lon],2)
+            firstTime = false;
+            }
 
-            document.getElementById('lat').textContent = lat;
-            document.getElementById('lon').textContent = lon;
+
+            document.getElementById('lat').textContent = lat.toFixed(2);
+            document.getElementById('lon').textContent = lon.toFixed(2);
         }
         getISS();
+
+        setInterval(getISS, 1000)
     </script>
 </body>
 </html>
