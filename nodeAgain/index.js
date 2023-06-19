@@ -10,6 +10,8 @@ const database = new Datastore('database.db');
 database.loadDatabase();
 // database.insert()
 
+
+
 //from all.html
 app.get('/api', (request, response) =>{
     //调取database.sb里的所有东西
@@ -22,6 +24,9 @@ app.get('/api', (request, response) =>{
     })
   
 })
+
+
+
 
 //from index.html
 app.post('/api', (request, response)=>{

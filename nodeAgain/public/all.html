@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+
+    <!-- all.html handle display the data in the database  -->
+
     <h1>Data Selfie App By D</h1>
     <script>
         //等待从server来的数据。。
@@ -16,14 +19,23 @@
         const data = await response.json();
 
 
-        // for (item of data){
-        //     const timestamp = document.createElement('div');
-        //     timestamp.textContent = `timestamp: ${item.root}`;
-        //     const geo = document.createElement('div');
-        //     geo.textContent = `${item.lat},${item.lon}`;
 
+        for (item of data){
+            const root = document.createElement('div');
 
-        // }
+            const date = document.createElement('div');
+            //convert all theses millisecond to the actual date
+            const dateString = new Date(item.timestamp).toLocaleString();
+            date.textContent = dateString;
+
+            const geo = document.createElement('div');
+            geo.textContent = `${item.lat},${item.lon}`;
+
+            //append all the things we just get to root and display
+            root.append(date, geo);
+            document.body.append(root)
+        }
+
         console.log(data);
         }
     </script>
