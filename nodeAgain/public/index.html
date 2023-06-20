@@ -4,22 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
+    <script src="sketch.js"></script>
+
     <title>node again</title>
 </head>
 <body>
     <script>
+        function setup(){
+
+        //creating the video capture
+        noCanvas();
+        const video = createCapture(VIDEO);
+        video.size(480,320)
+        // background(0);
+
+
+
         if ('geolocation' in navigator){
             console.log("geolocation is available");
+
 
             //make it ansync to make the wait for the response back from the server..
             navigator.geolocation.getCurrentPosition(async function(position){
                 console.log(position);
                 let lat = position.coords.latitude;
                 let lon = position.coords.longitude;
+                video.loadPixels();
+                const image64 = video.canvas.toDataURL();
+
                 document.getElementById("lat").textContent = lat;
                 document.getElementById("lon").textContent = lon;
 
-                const data = { lat, lon };
+                const data = { lat, lon, image64 };
                 const options = {
                     method: 'POST',
                     headers:{
@@ -43,6 +61,7 @@
         }else{
             console.log("oppsyyy...geolocation is not available")
         }
+    }
     </script>
 
     <h1>hello</h1>

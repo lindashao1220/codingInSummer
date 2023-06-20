@@ -31,8 +31,11 @@
             const geo = document.createElement('div');
             geo.textContent = `${item.lat},${item.lon}`;
 
+            const image = document.createElement('img');
+            image.src = item.image64;
+
             //append all the things we just get to root and display
-            root.append(date, geo);
+            root.append(date, geo, image);
             document.body.append(root)
         }
 
