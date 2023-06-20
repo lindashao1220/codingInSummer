@@ -42,6 +42,7 @@ app.post('/api', (request, response)=>{
     response.json({
         status: 'success',
         timestamp: timestamp,
-        lat: data.lat
+        lat: data.lat,
+        img: data.image
     })
 })

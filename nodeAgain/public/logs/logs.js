@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-    <!-- all.html handle display the data in the database  -->
-
-    <h1>Data Selfie App By D</h1>
-    <script>
         //等待从server来的数据。。
         getData();
         async function getData(){
@@ -23,6 +9,9 @@
         for (item of data){
             const root = document.createElement('div');
 
+            const mood = document.createElement('div');
+            mood.textContent = `mood: ${item.mood}`;
+
             const date = document.createElement('div');
             //convert all theses millisecond to the actual date
             const dateString = new Date(item.timestamp).toLocaleString();
@@ -33,15 +22,13 @@
 
             const image = document.createElement('img');
             image.src = item.image64;
+            image.alt = 'Dan Shiffman making silly faces.';
 
             //append all the things we just get to root and display
-            root.append(date, geo, image);
+            root.append(mood, date, geo, image);
             document.body.append(root)
         }
 
         console.log(data);
         
         }
-    </script>
-</body>
-</html>
