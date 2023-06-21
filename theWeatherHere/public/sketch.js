@@ -1,18 +1,10 @@
 function setup(){
-
-
-  const canvas = createCanvas(160, 120);
-  pixelDensity(1);
-  background(0);
-
   let lat, lon;
 
   const button = document.getElementById('submit');
   button.addEventListener('click', async event => {
     const mood = document.getElementById('mood').value;
-    canvas.loadPixels();
-    const image64 = canvas.elt.toDataURL();
-    const data = { lat, lon, mood, image64 };
+    const data = { lat, lon, mood };
     const options = {
       method: 'POST',
       headers: {
@@ -51,16 +43,3 @@ function setup(){
     }
 }
 
-function keyPressed() {
-    if (key == 'c') {
-      background(0);
-    }
-  }
-  
-  function draw() {
-    stroke(255);
-    strokeWeight(8);
-    if (mouseIsPressed) {
-      line(pmouseX, pmouseY, mouseX, mouseY);
-    }
-  }

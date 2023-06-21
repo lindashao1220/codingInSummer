@@ -20,12 +20,8 @@
             const geo = document.createElement('div');
             geo.textContent = `${item.lat},${item.lon}`;
 
-            const image = document.createElement('img');
-            image.src = item.image64;
-            image.alt = 'Dan Shiffman making silly faces.';
-
             //append all the things we just get to root and display
-            root.append(mood, date, geo, image);
+            root.append(mood, date, geo);
             document.body.append(root)
         }
 
