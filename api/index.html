@@ -40,6 +40,18 @@
 
         let firstTime = true;
         async function getISS(){
+            //await 就是让 promise 变得更简单的一个东西 就可以省略很多.then(), .then(
+            //比如说可以直接写
+            // async function GIF(){
+            // ler response = await fetch(API)
+            // let json = await response.json()
+            //}
+            //要不就要写成
+            //fetch(API)
+            //.then(response => response.json())
+            //.then(json => {
+               // return(json.word)
+            //})
             const response = await fetch(api_url)
             const data = await response.json();
             console.log(data.latitude)
