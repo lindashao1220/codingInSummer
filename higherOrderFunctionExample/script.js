@@ -13,8 +13,6 @@
 // }
 // sing(meow)
 
-
-
 //TWO: RETURN A FUCTION
 // function multiplier(factor){
 //     return function(x){
@@ -32,18 +30,81 @@
 
 
 
+
+
 //SOME HIGH ODER FUNCTION EXAMPLES
 //ONE: MAP()
 //The map() method creates a new array 
 //populated with the results of calling a provided function on every element in the calling array.
+
+//map本来就是一个function了 在function里面执行一个function
+
 // let vals = [4,1,2,4,5,6,0];
 // console.log(vals)
 
 // function doubler(x){
 //     return x * 2
 // }
-//     //apply the new array value to the previous defined vals array
+//   //apply the new array value to the previous defined vals array
 // vals = vals.map(doubler);
 //     //可以代替前面那一坨
 //     //vals = vals.map(x => x * 2);
 // console.log(vals);
+
+
+//  //ALSO ADD FILL(): 创建一个array 先在每个空里面fill0 然后在random值map进哪个array
+// let vals = new Array(100);
+// vals = vals.fill(0).map(x => Math.random());
+// console.log(vals)
+
+
+
+//TWO: REDUCE()
+//The reduce() method reduces the array to a single value
+
+
+//In the case of reduce(callbackFn, initialValue)
+//The reduce() method goes through each element of the array 
+//and calls the callback function with two arguments: the current element and the accumulator.
+//The reduce() method then takes the result that was returned by the callback function 
+//and uses it as the new value of the accumulator for the next iteration. 
+//This process continues until the reduce() method has gone through all the elements of the array.
+
+// let vals = [21,2,3,4,5,6];
+// function findMax(acc, val){
+//     if(val > acc){
+//         acc = val
+//     }
+//     return acc;
+// }
+// let biggest = vals.reduce(findMax, 0)
+// console.log(biggest)
+
+// let vals = [21,2,3,4,5,6];
+// // function sum(acc, val){
+// //     console.log(acc)
+// //     return acc + val;
+// // }
+// let answer = vals.reduce((acc, val)=> acc + val,0);
+// console.log(answer)
+
+
+//THREE: FILTER()
+// let vals = [21,2,3,4,5,6];
+
+// // function isEven(num){
+// //     return (num % 2 == 0)
+// // }
+// // vals = vals.filter(isEven)
+// vals  = vals.filter(x => x % 2 == 0)
+// console.log(vals)
+
+
+// let s = "it is so beautiful, so I love it very much"
+// let words = s.split(/\W+/).filter(word => word.length >= 3)
+// console.log(words)
+
+
+
+//FOUR: SORT()
+
