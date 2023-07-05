@@ -134,3 +134,73 @@
 
 
 
+let particles;
+
+function setup(){
+    let canvas = createCanvas(640,480);
+    canvas.parent("canvasContainer");
+    particles = Array(2).fill(null).map(x => new Particle())
+}
+
+function draw(){
+    background(0);
+
+    // for(let i = 0; i < 2; i++){
+    //     let p = new Particle();
+    //     particles.push(p)
+    // }
+    let p = new Particle;
+    particles.push(p)
+    for (let particle of particles){
+        particle.update();
+        particle.show();
+    }
+
+    function keep(p){
+        return !p.finished();
+    }
+    particles = particles.filter(keep)
+
+    let sumx = particles.reduce((x, p) => x + p.x, 0)
+    let sumy = particles.reduce((y, p) => y + p.y, 0)
+
+    let centerX = sumx / particles.length;
+    let centerY = sumy / particles.length;
+    fill(255, 0 ,0)
+    ellipse(centerX,centerY, 24)
+    // for(let i = particles.length -1 ; i >= 0 ; i--){
+    //     particles[i].update()
+    //     particles[i].show()
+    //     if(particles[i].finished()){
+    //         particles.splice(i ,1)
+    //     }
+    // }
+    // for (let i = 0; i < 5; i++){
+    //     let 
+    // }
+}
+
+
+class Particle{
+    constructor(){
+        this.x = 320;
+        this.y = 400;
+        this.vx = random(-1, 1);
+        this.vy = random(-3, -1);
+        this.alpha = 255;
+        }
+    update(){
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha--;
+    }
+    finished(){
+        return this.alpha < 0;
+    }
+    show(){
+        stroke(100);
+        fill(255, this.alpha);
+        ellipse(this.x, this.y, 20);
+    }
+  
+}
