@@ -96,6 +96,7 @@
 // //     return (num % 2 == 0)
 // // }
 // // vals = vals.filter(isEven)
+// // make a new array so have to assign again to vals
 // vals  = vals.filter(x => x % 2 == 0)
 // console.log(vals)
 
@@ -106,5 +107,30 @@
 
 
 
-//FOUR: SORT()
+//FOUR: SORT() it is a method help you figure out the simple sorting
+//when it gets harder
+//write your own code
+// //ea: sort it by y value
+// let vals = [{
+//     x: 9,
+//     y: 3
+// },{
+//     x: 4,
+//     y: 10
+// }]
+// function compare(a, b){
+//     return a.y - b.y;
+// }
+// vals.sort(compare);
+// console.log(vals)
+
+
+// //sort it out by length
+// let s = "it is so beautiful, so I love it very much, xxxxx"
+// let words = s.split(/\W+/).filter(word => word.length >= 3)
+// //sort 算出来一个数字 然后根据这个数字开始排序
+// words.sort((a, b) => b.length - a.length)
+// console.log(words)
+
+
 
