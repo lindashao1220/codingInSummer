@@ -139,17 +139,13 @@ let particles;
 function setup(){
     let canvas = createCanvas(640,480);
     canvas.parent("canvasContainer");
-    particles = Array(2).fill(null).map(x => new Particle())
+    particles = Array(10).fill(null).map(p => new Particle())
 }
 
 function draw(){
     background(0);
 
-    // for(let i = 0; i < 2; i++){
-    //     let p = new Particle();
-    //     particles.push(p)
-    // }
-    let p = new Particle;
+    let p = new Particle();
     particles.push(p)
     for (let particle of particles){
         particle.update();
