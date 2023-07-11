@@ -41,6 +41,9 @@ function newChar() {
         }
       }
       this.fitness = score / target.length;
+      //当fitness越高想让他更加突出 并且越高差距就要越大
+      //就可以采用指数函数类型的函数 让优秀的更优秀
+      this.fitness = pow(this.fitness, 4)
     }
   
     // Crossover

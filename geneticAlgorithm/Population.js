@@ -52,10 +52,12 @@ class Population {
       for (let i = 0; i < this.population.length; i++) {
         let fitness = map(this.population[i].fitness, 0, maxFitness, 0, 1);
         let n = floor(fitness * 100); // Arbitrary multiplier, we can also use monte carlo method
+
         for (let j = 0; j < n; j++) {
           // and pick two random numbers
           this.matingPool.push(this.population[i]);
         }
+       
       }
     }
   
@@ -91,6 +93,7 @@ class Population {
       }
   
       this.best = this.population[index].getPhrase();
+    
       if (worldrecord === this.perfectScore) {
         this.finished = true;
       }
