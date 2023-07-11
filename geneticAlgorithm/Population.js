@@ -33,33 +33,69 @@ class Population {
       }
     }
   
-    // Generate a mating pool
-    naturalSelection() {
-      // Clear the ArrayList
-      //fit pick array
-      this.matingPool = [];
+//POOL SELECTION METHOD 1:
+    //哪一个fitness值大就多多pick他
+    // // Generate a mating pool
+    // naturalSelection() {
+    //   // Clear the ArrayList
+    //   //fit pick array
+    //   this.matingPool = [];
   
-      let maxFitness = 0;
-      for (let i = 0; i < this.population.length; i++) {
-        if (this.population[i].fitness > maxFitness) {
-          maxFitness = this.population[i].fitness;
-        }
-      }
+    //   let maxFitness = 0;
+    //   for (let i = 0; i < this.population.length; i++) {
+    //     if (this.population[i].fitness > maxFitness) {
+    //       maxFitness = this.population[i].fitness;
+    //     }
+    //   }
   
-      // Based on fitness, each member will get added to the mating pool a certain number of times
-      // a higher fitness = more entries to mating pool = more likely to be picked as a parent
-      // a lower fitness = fewer entries to mating pool = less likely to be picked as a parent
-      for (let i = 0; i < this.population.length; i++) {
-        let fitness = map(this.population[i].fitness, 0, maxFitness, 0, 1);
-        let n = floor(fitness * 100); // Arbitrary multiplier, we can also use monte carlo method
+    //   // Based on fitness, each member will get added to the mating pool a certain number of times
+    //   // a higher fitness = more entries to mating pool = more likely to be picked as a parent
+    //   // a lower fitness = fewer entries to mating pool = less likely to be picked as a parent
+    //   for (let i = 0; i < this.population.length; i++) {
+    //     let fitness = map(this.population[i].fitness, 0, maxFitness, 0, 1);
+    //     let n = floor(fitness * 100); // Arbitrary multiplier, we can also use monte carlo method
 
-        for (let j = 0; j < n; j++) {
-          // and pick two random numbers
-          this.matingPool.push(this.population[i]);
-        }
+    //     for (let j = 0; j < n; j++) {
+    //       // and pick two random numbers
+    //       this.matingPool.push(this.population[i]);
+    //     }
        
-      }
-    }
+    //   }
+    // }
+
+
+
+//POOL SELECTION METHOD 2:
+        //rejection samplelling 方法： 就是说把fitness值和generate出来的一个random值相比较
+        //如果fitness值（例如是0.8）比 random值（0.9）小， 淘汰 ，如果更大就保留
+        //这样fitness值很小的 例如0.1什么的就很早被淘汰了
+        // Generate a mating pool
+        naturalSelection() {
+            // Clear the ArrayList
+            //fit pick array
+            this.matingPool = [];
+        
+            let maxFitness = 0;
+            for (let i = 0; i < this.population.length; i++) {
+              if (this.population[i].fitness > maxFitness) {
+                maxFitness = this.population[i].fitness;
+              }
+            }
+        
+            // Based on fitness, each member will get added to the mating pool a certain number of times
+            // a higher fitness = more entries to mating pool = more likely to be picked as a parent
+            // a lower fitness = fewer entries to mating pool = less likely to be picked as a parent
+            for (let i = 0; i < this.population.length; i++) {
+              let fitness = map(this.population[i].fitness, 0, maxFitness, 0, 1);
+              let n = floor(fitness * 100); // Arbitrary multiplier, we can also use monte carlo method
+      
+              for (let j = 0; j < n; j++) {
+                // and pick two random numbers
+                this.matingPool.push(this.population[i]);
+              }
+             
+            }
+          }
   
     // Create a new generation
     generate() {
