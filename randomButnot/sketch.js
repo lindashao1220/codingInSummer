@@ -16,8 +16,21 @@ function setup(){
   }
   for(i = 0; i < fruits.length; i++){
     fruits[i].prob = fruits[i].score / sum;
+
+    //新加的count 可以对比一下 count和probs
+    fruits[i].count = 0;
   }
   console.log(fruits)
+
+  let mangoCount = 0;
+  for(i = 0; i<100; i++){
+    var fruit = pickOne(fruits);
+    if (fruit.name == 'mango'){
+      mangoCount ++;
+    }
+    fruit.count++
+  }
+  console.log("mango count shold be (the most)", mangoCount)
 }
 
 //算法
